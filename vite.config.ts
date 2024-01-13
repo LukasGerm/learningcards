@@ -11,8 +11,8 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: "Taskjournal",
-        short_name: "Taskjournal",
+        name: "learningcards",
+        short_name: "learningcards",
         description: "Todos and journaling made easy",
         theme_color: "#ffffff",
         icons: [
