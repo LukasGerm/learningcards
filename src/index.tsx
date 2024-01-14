@@ -6,8 +6,7 @@ import "./index.css";
 import { App } from "./App";
 import { getAuth } from "firebase/auth";
 import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
-
-console.log(import.meta.env);
+import { Router } from "@solidjs/router";
 
 if (!import.meta.env.VITE_FIREBASE_API_KEY) {
   throw new Error("Missing FIREBASE_API_KEY env var");
@@ -51,7 +50,9 @@ const root = document.getElementById("root");
 render(
   () => (
     <QueryClientProvider client={queryClient}>
-      <App />
+      <Router>
+        <App />
+      </Router>
       <div id="portal-host" />
     </QueryClientProvider>
   ),

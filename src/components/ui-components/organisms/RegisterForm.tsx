@@ -1,8 +1,8 @@
 import { Component } from "solid-js";
 import { createStore } from "solid-js/store";
-import { useSignUp } from "./hooks/useSignUp";
-import { Input } from "./atoms/Input";
-import { Button } from "./atoms/Button";
+import { useSignUp } from "../../logic-components/hooks/useSignUp";
+import { Input } from "../atoms/Input";
+import { Button } from "../atoms/Button";
 
 const useSubmitForm = () => {
   const [errors, setErrors] = createStore<{
@@ -64,7 +64,7 @@ const useSubmitForm = () => {
   return { onSubmit, errors };
 };
 
-const RegisterForm: Component = () => {
+export const RegisterForm: Component = () => {
   const { onSubmit, errors } = useSubmitForm();
 
   return (
@@ -109,5 +109,3 @@ const RegisterForm: Component = () => {
     </div>
   );
 };
-
-export default RegisterForm;

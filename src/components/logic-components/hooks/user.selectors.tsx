@@ -1,3 +1,4 @@
+import { useNavigate } from "@solidjs/router";
 import { User, getAuth, onIdTokenChanged } from "firebase/auth";
 import { onCleanup } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";

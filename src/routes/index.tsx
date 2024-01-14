@@ -1,9 +1,8 @@
 import { getAuth, signOut } from "firebase/auth";
-import { Route, Router } from "@solidjs/router";
 import { ParentComponent } from "solid-js";
-import { Button } from "../components/atoms/Button";
 import { RootLayout } from "../RootLayout";
-import { CollectionList } from "../components/organisms/CollectionList";
+import { Button } from "../components/ui-components/atoms/Button";
+import { CollectionList } from "../components/ui-components/organisms/CollectionList";
 
 const Layout: ParentComponent = (props) => {
   return (
@@ -20,9 +19,9 @@ const Layout: ParentComponent = (props) => {
 
 const CollectionsOverview = () => {
   return (
-    <Router root={Layout}>
-      <Route path="/" component={CollectionList} />
-    </Router>
+    <Layout>
+      <CollectionList />
+    </Layout>
   );
 };
 
