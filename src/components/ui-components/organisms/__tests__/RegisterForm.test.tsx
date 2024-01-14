@@ -1,10 +1,10 @@
 import { render, fireEvent, screen } from "@solidjs/testing-library";
-import RegisterForm from "../RegisterForm";
+import { RegisterForm } from "../RegisterForm";
 import userEvent from "@testing-library/user-event";
 
 const user = userEvent.setup();
 
-jest.mock("../hooks/useSignUp", () => {
+jest.mock("../../../logic-components/hooks/useSignUp", () => {
   return {
     useSignUp: () => {
       return () =>
@@ -14,6 +14,7 @@ jest.mock("../hooks/useSignUp", () => {
     },
   };
 });
+
 describe("RegisterForm", () => {
   it("shows error if password is too short", async () => {
     render(() => <RegisterForm />);

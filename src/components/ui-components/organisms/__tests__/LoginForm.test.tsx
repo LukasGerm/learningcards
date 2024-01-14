@@ -1,10 +1,10 @@
 import { render, fireEvent, screen } from "@solidjs/testing-library";
-import LoginForm from "../LoginForm";
+import { LoginForm } from "../LoginForm";
 import userEvent from "@testing-library/user-event";
 
 const user = userEvent.setup();
 
-jest.mock("../hooks/useSignIn", () => {
+jest.mock("../../../logic-components/hooks/useSignIn", () => {
   return {
     useSignIn: () => {
       return () =>

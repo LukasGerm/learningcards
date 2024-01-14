@@ -1,6 +1,6 @@
 import { Match, ParentComponent, Switch, lazy } from "solid-js";
 import { RootLayout } from "./RootLayout";
-import { Navigate, Route, Router } from "@solidjs/router";
+import { Navigate, Route } from "@solidjs/router";
 import { useObserveSession } from "./components/logic-components/hooks/user.selectors";
 import { RouteGuard } from "./components/logic-components/features/RouteGuard";
 
