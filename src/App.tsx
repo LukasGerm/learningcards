@@ -1,6 +1,6 @@
 import { Match, ParentComponent, Switch, lazy } from "solid-js";
 import { RootLayout } from "./RootLayout";
-import { Navigate, Route } from "@solidjs/router";
+import { Navigate, Route, Router } from "@solidjs/router";
 import { useObserveSession } from "./components/logic-components/hooks/user.selectors";
 import { RouteGuard } from "./components/logic-components/features/RouteGuard";
 
@@ -20,8 +20,10 @@ const Login = lazy(() => import("./routes/auth/login"));
 const Register = lazy(() => import("./routes/auth/register"));
 const CollectionsOverview = lazy(() => import("./routes/home"));
 
-const SessionChecker: ParentComponent = (props) => {
+export const SessionChecker: ParentComponent = (props) => {
   const state = useObserveSession();
+
+  console.log("ASD");
 
   return (
     <>
@@ -51,6 +53,7 @@ const SessionChecker: ParentComponent = (props) => {
 const MainRoutes = () => {
   return (
     <Route path="/" component={SessionChecker}>
+      <Route path="/" component={SessionChecker} />
       <RouteGuard
         shouldBeAuthenticated={true}
         path="/home"
@@ -73,5 +76,9 @@ const MainRoutes = () => {
 };
 
 export const App = () => {
-  return <MainRoutes />;
+  return (
+    <Router>
+      <MainRoutes />
+    </Router>
+  );
 };
