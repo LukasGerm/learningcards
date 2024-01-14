@@ -20,6 +20,8 @@ export const useObserveSession = () => {
     error: null,
   });
 
+  const navigate = useNavigate();
+
   const unsub = onIdTokenChanged(
     auth,
     (authUser) => {
@@ -30,6 +32,11 @@ export const useObserveSession = () => {
           error: null,
         })
       );
+      if (authUser) {
+        navigate("/home");
+      } else {
+        navigate("/auth/login");
+      }
     },
     (error) => {
       setState(

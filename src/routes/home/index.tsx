@@ -1,8 +1,8 @@
 import { getAuth, signOut } from "firebase/auth";
 import { ParentComponent } from "solid-js";
-import { RootLayout } from "../RootLayout";
-import { Button } from "../components/ui-components/atoms/Button";
-import { CollectionList } from "../components/ui-components/organisms/CollectionList";
+import { RootLayout } from "../../RootLayout";
+import { Button } from "../../components/ui-components/atoms/Button";
+import { CollectionList } from "../../components/ui-components/organisms/CollectionList";
 
 const Layout: ParentComponent = (props) => {
   return (

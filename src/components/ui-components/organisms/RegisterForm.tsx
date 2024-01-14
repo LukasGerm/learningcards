@@ -100,7 +100,10 @@ export const RegisterForm: Component = () => {
           />
         </div>
         <div class="flex items-center justify-between">
-          <a class="inline-block align-baseline font-bold text-sm  " href="/">
+          <a
+            class="inline-block align-baseline font-bold text-sm  "
+            href="/auth/login"
+          >
             Already got an account?
           </a>
           <Button type="submit">Register</Button>

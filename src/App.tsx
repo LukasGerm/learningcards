@@ -1,6 +1,6 @@
-import { Match, Switch, lazy } from "solid-js";
+import { Match, ParentComponent, Switch, lazy } from "solid-js";
 import { RootLayout } from "./RootLayout";
-import { Route, Router } from "@solidjs/router";
+import { Navigate, Route, Router } from "@solidjs/router";
 import { useObserveSession } from "./components/logic-components/hooks/user.selectors";
 import { RouteGuard } from "./components/logic-components/features/RouteGuard";
 
@@ -18,14 +18,42 @@ import { RouteGuard } from "./components/logic-components/features/RouteGuard";
 const Auth = lazy(() => import("./routes/auth"));
 const Login = lazy(() => import("./routes/auth/login"));
 const Register = lazy(() => import("./routes/auth/register"));
-const CollectionsOverview = lazy(() => import("./routes/"));
+const CollectionsOverview = lazy(() => import("./routes/home"));
 
-const MainRouter = () => {
+const SessionChecker: ParentComponent = (props) => {
+  const state = useObserveSession();
+
   return (
     <>
+      <Switch>
+        <Match when={state.loading}>
+          <RootLayout>
+            <p>Loading...</p>
+          </RootLayout>
+        </Match>
+        <Match when={state.error}>
+          <RootLayout>
+            <p>ERROR</p>
+          </RootLayout>
+        </Match>
+        <Match when={!state.loading && state.data}>
+          <Navigate href="/home" />
+        </Match>
+        <Match when={!state.loading && !state.data}>
+          <Navigate href="/auth/login" />
+        </Match>
+      </Switch>
+      {props.children}
+    </>
+  );
+};
+
+const MainRoutes = () => {
+  return (
+    <Route path="/" component={SessionChecker}>
       <RouteGuard
         shouldBeAuthenticated={true}
-        path="/"
+        path="/home"
         component={CollectionsOverview}
       />
       <Route path="/auth" component={Auth}>
@@ -40,26 +68,10 @@ const MainRouter = () => {
           component={Register}
         />
       </Route>
-    </>
+    </Route>
   );
 };
 
 export const App = () => {
-  const state = useObserveSession();
-
-  return (
-    <Switch fallback={<>Not found</>}>
-      <Match when={state.loading}>
-        <RootLayout>
-          <p>Loading...</p>
-        </RootLayout>
-      </Match>
-      <Match when={state.error}>
-        <p>ERROR</p>
-      </Match>
-      <Match when={!state.loading || state.data}>
-        <MainRouter />
-      </Match>
-    </Switch>
-  );
+  return <MainRoutes />;
 };

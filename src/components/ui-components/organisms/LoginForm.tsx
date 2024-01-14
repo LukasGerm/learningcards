@@ -85,7 +85,7 @@ export const LoginForm: Component = () => {
         <div class="flex items-center justify-between">
           <a
             class="inline-block align-baseline font-bold text-sm  "
-            href="/register"
+            href="/auth/register"
           >
             Need an account?
           </a>
