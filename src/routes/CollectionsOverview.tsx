@@ -18,10 +18,12 @@ const Layout: ParentComponent = (props) => {
   );
 };
 
-export const CollectionsOverview = () => {
+const CollectionsOverview = () => {
   return (
     <Router root={Layout}>
       <Route path="/" component={CollectionList} />
     </Router>
   );
 };
+
+export default CollectionsOverview;

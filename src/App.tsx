@@ -1,8 +1,6 @@
-import { Match, Switch } from "solid-js";
-import { Auth } from "./routes/Auth";
+import { Match, Switch, lazy } from "solid-js";
 import { useObserveSession } from "./components/hooks/user.selectors";
 import { RootLayout } from "./RootLayout";
-import { CollectionsOverview } from "./routes/CollectionsOverview";
 
 // type ValidationFunction = ({ value }: { value: string }) => Promise<unknown>;
 
@@ -14,6 +12,9 @@ import { CollectionsOverview } from "./routes/CollectionsOverview";
     }
   }
 }*/
+
+const Auth = lazy(() => import("./routes/Auth"));
+const CollectionsOverview = lazy(() => import("./routes/CollectionsOverview"));
 
 export const App = () => {
   const state = useObserveSession();

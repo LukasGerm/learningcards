@@ -2,9 +2,8 @@ import { Component, ParentComponent, lazy } from "solid-js";
 
 import { Route, Router } from "@solidjs/router";
 import { RootLayout } from "../RootLayout";
-
-const LoginForm = lazy(() => import("../components/LoginForm"));
-const RegisterForm = lazy(() => import("../components/RegisterForm"));
+import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
 
 const Layout: ParentComponent = (props) => {
   return (
@@ -18,7 +17,7 @@ const Layout: ParentComponent = (props) => {
   );
 };
 
-export const Auth: Component = () => {
+const Auth: Component = () => {
   return (
     <Router root={Layout}>
       <Route path="/" component={LoginForm} />
@@ -26,3 +25,5 @@ export const Auth: Component = () => {
     </Router>
   );
 };
+
+export default Auth;
