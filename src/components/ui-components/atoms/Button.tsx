@@ -4,6 +4,7 @@ interface ButtonProps {
   type?: JSX.ButtonHTMLAttributes<HTMLButtonElement>["type"];
   onClick?: JSX.ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
   rounded?: boolean;
+  disabled?: boolean;
 }
 
 export const Button: ParentComponent<ButtonProps> = (props) => {
@@ -15,6 +16,7 @@ export const Button: ParentComponent<ButtonProps> = (props) => {
       }
       type={props.type || "button"}
       onClick={props.onClick}
+      disabled={props.disabled}
     >
       {props.children}
     </button>

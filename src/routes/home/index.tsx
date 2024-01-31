@@ -2,7 +2,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { ParentComponent } from "solid-js";
 import { RootLayout } from "../../RootLayout";
 import { Button } from "../../components/ui-components/atoms/Button";
-import { CollectionList } from "../../components/ui-components/organisms/CollectionList";
+import { Collections } from "../../components/logic-components/features/Collections/Collections";
 
 const Layout: ParentComponent = (props) => {
   return (
@@ -20,7 +20,7 @@ const Layout: ParentComponent = (props) => {
 const CollectionsOverview = () => {
   return (
     <Layout>
-      <CollectionList />
+      <Collections />
     </Layout>
   );
 };

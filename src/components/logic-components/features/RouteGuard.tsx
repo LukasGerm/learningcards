@@ -14,14 +14,10 @@ const PrivateComp: ParentComponent<{
   const session = useSession();
 
   if (props.shouldBeAuthenticated && !session) {
-    console.log("REDIRECTING TO LOGIN");
     return <Navigate href="/auth/login" />;
   } else if (props.shouldBeAuthenticated === false && session) {
-    console.log("REDIRECTING TO HOME");
     return <Navigate href="/home" />;
   }
-
-  console.log("RENDERING CHILDREN");
 
   return props.children;
 };

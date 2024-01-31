@@ -37,3 +37,19 @@ export const createCollection = async (options: {
     };
   }
 };
+
+export const getCollections = async (options: {
+  userId: string;
+}): Promise<CardCollection[]> => {
+  const db = getFirestore();
+  const userRef = doc(db, "users", options.userId);
+  const cardCollectionRef = collection(userRef, "cardcollections");
+  const q = query(cardCollectionRef);
+
+  const querySnapshot = await getDocs(q);
+
+  return querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    ref: doc.id,
+  })) as CardCollection[];
+};
